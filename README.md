@@ -28,7 +28,7 @@ Os dados brutos (por exemplo, informações sobre dependências e vulnerabilidad
 
 Estudos anteriores ressaltam a gravidade do problema das vulnerabilidades em open source e motivam a busca por soluções de verificação automatizada. O relatório Open Source Security and Risk Analysis 2024 (OSSRA) do Synopsys Cybersecurity Research Center (CyRC) revelou que 84% dos codebases analisados continham pelo menos uma vulnerabilidade conhecida de código aberto, e 74% dos codebases apresentavam vulnerabilidades classificadas como de alto risco. Esses números evidenciam não apenas a ubiquidade de vulnerabilidades em projetos de software, mas também a severidade considerável de muitas delas. Além da prevalência das falhas, o crescimento acelerado do volume de vulnerabilidades reportadas tem sido documentado na literatura. 
 
-Uma pesquisa abrangente conduzida por Akhavani et al. (2025), examinando tendências em múltiplos ecossistemas open source (incluindo JavaScript/Node.js), identificou um crescimento exponencial nas vulnerabilidades divulgadas, na ordem de 98% ao ano. Esse aumento anual dramático supera em muito o ritmo de crescimento do próprio ecossistema de software open source e indica que as brechas de segurança estão se acumulando cada vez mais rápido. Em conjunto, essas evidências prévias — tanto de fontes industriais (Synopsys) quanto acadêmicas (Akhavani et al.) — ressaltam a urgência de adotar práticas e ferramentas mais eficazes de detecção e correção de vulnerabilidades em projetos JavaScript, motivando a realização deste estudo.
+Uma pesquisa abrangente conduzida por Akhavani et al. (2025), examinando tendências em múltiplos ecossistemas open source (incluindo JavaScript/Node.js), identificou um crescimento exponencial nas vulnerabilidades divulgadas, na ordem de 98% ao ano. Esse aumento anual dramático supera em muito o ritmo de crescimento do próprio ecossistema de software open source e indica que as brechas de segurança estão se acumulando cada vez mais rápido. Em conjunto, essas evidências prévias, tanto de fontes industriais (Synopsys) quanto acadêmicas (Akhavani et al.), ressaltam a urgência de adotar práticas e ferramentas mais eficazes de detecção e correção de vulnerabilidades em projetos JavaScript, motivando a realização deste estudo.
 
 
 ### Referencial teórico e empírico essencial
@@ -67,8 +67,8 @@ investor e o crescimento acelerado das mesmas, este estudo busca analisar critic
 - [Jhonata Silveira Dias](https://github.com/jhonatasdias)
     - Engenheiro de Software/Desenvolvedor
 
-### Projeto / produto / iniciativa relacionada
+## Projeto / produto / iniciativa relacionada
 
-Descreva a qual produto, módulo, projeto ou iniciativa estratégica este experimento está conectado, facilitando o contexto.
+Este experimento está vinculado à linha de pesquisa em Segurança em Desenvolvimento de Software e à iniciativa de investigação sobre a adoção de práticas DevSecOps em projetos open source, no contexto da produção acadêmica do autor. O estudo se alinha a objetivos mais amplos de compreender como práticas automatizadas, como análise estática e detecção de vulnerabilidades, estão sendo aplicadas (ou negligenciadas) em ecossistemas amplamente utilizados, como o JavaScript/Node.js. Além disso, o experimento pode subsidiar futuras iniciativas práticas voltadas à melhoria de ferramentas de segurança ou à proposição de diretrizes para manutenção segura de repositórios open source. O projeto também pode ser considerado parte de uma possível monografia de graduação (ou outro tipo de trabalho, se aplicável), com resultados potencialmente relevantes para publicação em conferências ou eventos técnicos na área de engenharia de software e segurança cibernética.
 
 [Retorne ao Sumário](#sumário)
