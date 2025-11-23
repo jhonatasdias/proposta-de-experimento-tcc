@@ -2,333 +2,47 @@
 
 ## Sumário
 
-> Entrega 1
-
-1. [Identificação básica](#identificação-básica)
+1. [Título](#a-adoção-real-de-sistemas-de-verificação-de-vunerabilidade-em-projetos-javascript---pj001)
 1. [Contexto e problema](#contexto-e-problema)
-
-> Entrega 2
-
-3. [Objetivos e questões (Goal / Question / Metric)](#objetivos-e-questões-goal--question--metric)
-1. [Escopo e contexto do experimento](#escopo-e-contexto-do-experimento)
-1. [Stakeholders e impacto esperado](#stakeholders-e-impacto-esperado)
-1. [Riscos de alto nível, premissas e critérios de sucesso](#riscos-de-alto-nível-premissas-e-critérios-de-sucesso)
-
-> Entrega 3
-
-7. []()
-7. []()
-7. []()
-
-> Entrega 4
-
-10. []()
+1. [Informações Adicionais](#informações-adicionais)
 
 ---
 
-
-
-## Identificação básica
-
-### Título do experimento
-
-Dê um nome claro e descritivo que permita entender rapidamente o foco do experimento (o que está sendo comparado, avaliado ou medido), evitando siglas internas pouco conhecidas.
-
-### ID / código
-
-Informe o identificador único usado pela organização (código de projeto, número de estudo, etc.), que facilitará o rastreio e o vínculo com outros artefatos.
-
-### Versão do documento e histórico de revisão
-
-Registre a versão atual (por exemplo, v1.0, v1.1) e mantenha um curto histórico das principais alterações, para saber o que mudou entre versões.
-
-### Datas (criação, última atualização)
-
-Anote quando o plano foi criado e quando foi atualizado pela última vez, para ter clareza sobre a atualidade das informações.
-
-### Autores (nome, área, contato)
-
-Liste quem participou da elaboração do plano, com área de atuação e forma de contato, para dúvidas e alinhamentos futuros.
-
-### Responsável principal (PI / dono do experimento)
-
-Indique a pessoa accountable pelas decisões do experimento (científicas e/ou de negócio), normalmente o “dono” do estudo.
-
-### Projeto / produto / iniciativa relacionada
-Descreva a qual produto, módulo, projeto ou iniciativa estratégica este experimento está conectado, facilitando o contexto.
-
-[Retorne ao Sumário](#sumário)
+# A adoção real de sistemas de verificação de vunerabilidade em projetos JavaScript - PJ001
 
 ## Contexto e problema
 
 ### Descrição do problema / oportunidade
 
-Explique de forma objetiva qual problema se busca resolver ou qual oportunidade está sendo explorada, incluindo sinais ou sintomas observados.
+Nos últimos anos observou-se um aumento significativo nos ataques cibernéticos direcionados a sistemas de software, tanto de código aberto quanto comerciais, resultando em prejuízos financeiros e violações de privacidade para os usuários. Grande parte desses ataques explora vulnerabilidades conhecidas em softwares desatualizados ou mal mantidos. Em particular, no ecossistema JavaScript, a atualização tardia de dependências e pacotes é um problema recorrente: estudos indicam que aplicações Node.js levam em média 103 dias para corrigir vulnerabilidades já divulgadas conforme Mahmoud Alfadel (2022) cita em seu trabalho. 
+
+Esse atraso prolongado abre uma janela de exposição em que invasores podem explorar falhas conhecidas, evidenciando a necessidade de intervenções que acelerem o processo de correção. Assim, delineia-se uma oportunidade clara para a adoção de ferramentas automatizadas de verificação de vulnerabilidades em projetos JavaScript, de modo a identificar e sanar brechas de segurança de forma proativa.
 
 ### Contexto organizacional e técnico
 
-Descreva o ambiente onde o experimento ocorrerá: tipo de empresa, equipe, domínio, tecnologias, processo de desenvolvimento e ferramentas relevantes.
+Este estudo foi conduzido em um contexto de pesquisa acadêmica, utilizando dados públicos da plataforma GitHub e ferramentas computacionais para análise. No aspecto organizacional, o trabalho insere-se na iniciativa de melhorar a segurança em projetos de software open source. Do ponto de vista técnico, a investigação focou o ecossistema JavaScript/Node.js, coletando dados de repositórios GitHub por meio da API da plataforma. 
+
+Os dados brutos (por exemplo, informações sobre dependências e vulnerabilidades reportadas) foram então processados e analisados com scripts em Python, permitindo extrair métricas e insights relevantes. Por fim, os resultados foram consolidados em visualizações gráficas para embasar a discussão. Esse arranjo técnico, envolvendo coleta automatizada, processamento de dados e apresentação visual, permitiu examinar sistematicamente as práticas de gerenciamento de vulnerabilidades em projetos JavaScript de forma reproduzível e escalável.
 
 ### Trabalhos e evidências prévias (internos e externos)
-Liste experimentos, estudos, análises ou dados anteriores que já tratam do tema, tanto dentro da organização quanto na literatura externa.
+
+Estudos anteriores ressaltam a gravidade do problema das vulnerabilidades em open source e motivam a busca por soluções de verificação automatizada. O relatório Open Source Security and Risk Analysis 2024 (OSSRA) do Synopsys Cybersecurity Research Center (CyRC) revelou que 84% dos codebases analisados continham pelo menos uma vulnerabilidade conhecida de código aberto, e 74% dos codebases apresentavam vulnerabilidades classificadas como de alto risco. Esses números evidenciam não apenas a ubiquidade de vulnerabilidades em projetos de software, mas também a severidade considerável de muitas delas. Além da prevalência das falhas, o crescimento acelerado do volume de vulnerabilidades reportadas tem sido documentado na literatura. 
+
+Uma pesquisa abrangente conduzida por Akhavani et al. (2025), examinando tendências em múltiplos ecossistemas open source (incluindo JavaScript/Node.js), identificou um crescimento exponencial nas vulnerabilidades divulgadas, na ordem de 98% ao ano. Esse aumento anual dramático supera em muito o ritmo de crescimento do próprio ecossistema de software open source e indica que as brechas de segurança estão se acumulando cada vez mais rápido. Em conjunto, essas evidências prévias — tanto de fontes industriais (Synopsys) quanto acadêmicas (Akhavani et al.) — ressaltam a urgência de adotar práticas e ferramentas mais eficazes de detecção e correção de vulnerabilidades em projetos JavaScript, motivando a realização deste estudo.
+
 
 ### Referencial teórico e empírico essencial
-Resuma os conceitos, teorias, modelos e resultados empíricos mais importantes que fundamentam o desenho do experimento e suas hipóteses.
+
+Para fundamentar o presente estudo, é necessário compreender os conceitos-chave de vulnerabilidade de software, as ferramentas de verificação de vulnerabilidades e modelos de adoção de práticas de segurança no desenvolvimento. No contexto de segurança da informação, vulnerabilidade é definida como qualquer fraqueza ou falha em componentes de software que possa ser explorada por agentes maliciosos, resultando em impacto negativo na confidencialidade, integridade ou disponibilidade do sistema. Em outras palavras, uma vulnerabilidade pode ser vista como uma porta de entrada indesejada no software – por exemplo, um erro de programação ou configuração – através da qual invasores obtêm acesso não autorizado, instalam código malicioso ou roubam dados sensíveis. Tais falhas de segurança, quando presentes em projetos de código aberto, tendem a ter alto potencial de propagação devido ao reuso extensivo de bibliotecas e componentes por diversas aplicações. Se uma biblioteca amplamente utilizada contém uma falha, todos os sistemas que dependem dela podem ficar expostos. Pesquisas mostram, por exemplo, que a presença de pacotes desatualizados no ecossistema npm está fortemente correlacionada com o aumento do risco de vulnerabilidades nos projetos dependentes. Dessa forma, manter as dependências atualizadas e corrigir prontamente as falhas conhecidas são práticas essenciais para reduzir a “defasagem técnica” e mitigar riscos de segurança.
+
+Como resposta a esse cenário, surgem as ferramentas automatizadas de verificação de vulnerabilidades, cujo objetivo é identificar e ajudar a corrigir falhas de segurança de forma mais ágil do que seria possível manualmente. Essas ferramentas englobam distintas abordagens tecnológicas. Uma categoria importante são as ferramentas de Software Composition Analysis (SCA), voltadas a inspecionar os componentes de código aberto utilizados em um projeto. Soluções de SCA escaneiam a base de código de uma aplicação para identificar bibliotecas e dependências de terceiros, levantando um inventário (por exemplo, uma SBOM – Software Bill of Materials) de todos os componentes open source em uso. De posse dessa lista, a ferramenta verifica as versões dos componentes contra bases de dados de vulnerabilidades conhecidas (como o catálogo CVE/NVD), detectando automaticamente se alguma dependência está afetada por vulnerabilidades reportadas. Esse processo automatizado permite revelar vulnerabilidades “ocultas” nas bibliotecas importadas, que muitas vezes passam despercebidas pelos desenvolvedores. Em paralelo, outras ferramentas realizam análise estática de código (SAST) buscando padrões de implementação inseguros no próprio código-fonte da aplicação. Tanto as ferramentas de SCA quanto de SAST integram o conjunto de práticas de DevSecOps, que visam inserir controles de segurança ao longo do ciclo de desenvolvimento de software. Ao incorporar essas verificações nos pipelines de CI/CD, as equipes conseguem “mover a segurança para a esquerda”, isto é, detectar vulnerabilidades nas fases iniciais do desenvolvimento, antes que o software seja implantado em produção. Essa filosofia de integrar verificações contínuas aproveita o fato de que falhas corrigidas precocemente são mais baratas e simples de resolver, além de reduzirem significativamente a janela em que o sistema fica vulnerável a ataques.
+
+Um aspecto fundamental no gerenciamento de vulnerabilidades é a rapidez com que as correções são aplicadas após a descoberta de uma falha. Modelos de ciclo de vida de vulnerabilidades sugerem que, após a divulgação pública de uma brecha, o risco de exploração atinge seu pico, pressionando os mantenedores a reagirem rapidamente. No entanto, conforme discutido, a realidade em muitos projetos é de atrasos consideráveis na aplicação de patches. Nesse contexto, a adoção de ferramentas automatizadas, como bots de atualização de dependências e scanners de segurança integrados, desponta como uma estratégia promissora para diminuir o tempo de exposição. Por exemplo, estudos sobre o bot Dependabot, que automatiza a criação de patches para dependências vulneráveis, demonstraram que desenvolvedores tendem a aceitar e mesclar a maioria das atualizações de segurança propostas em questão de dias, ao passo que, sem tal auxílio, a correção manual de vulnerabilidades pode levar vários meses. Esse achado empírico ilustra o impacto positivo que ferramentas de verificação/atualização automática podem ter: ao agilizar o processo de correção, elas reduzem o intervalo em que projetos ficam suscetíveis a explorações conhecidas. Além disso, tais ferramentas aliviam a carga dos desenvolvedores em rastrear continuamente novos avisos de segurança, funcionando como um mecanismo de alerta e mitigação proativo dentro do fluxo de trabalho de desenvolvimento.
+
+Em resumo, o referencial teórico-empírico deste estudo apoia-se em conceitos de vulnerabilidades de software e sua dinâmica em ecossistemas de código aberto, bem como nas abordagens modernas de identificação e mitigação dessas falhas. Modelos de segurança em DevOps (DevSecOps) e práticas de continuous security fornecem o pano de fundo conceitual para entender como e por que a integração de ferramentas de verificação de vulnerabilidades pode elevar o nível de segurança em projetos JavaScript. Fundamentado por evidências recentes, como a prevalência generalizada de falhas de segurança
+investor e o crescimento acelerado das mesmas, este estudo busca analisar criticamente a adoção dessas ferramentas no mundo real e avaliar em que medida elas estão suprindo a lacuna entre a detecção de vulnerabilidades e sua resolução efetiva nos projetos open source.
 
 [Retorne ao Sumário](#sumário)
-
-## Objetivos e questões (Goal / Question / Metric)
-
-### Objetivo geral (Goal template)
-
-Preencha o objetivo geral usando um template claro (por exemplo, GQM), deixando explícito o que será analisado, com qual propósito, sob qual perspectiva e em qual contexto.
-
-### Objetivos específicos
-Decomponha o objetivo geral em metas mais focadas (O1, O2, etc.), que descrevam resultados concretos de aprendizado ou decisão que o experimento deve gerar.
-
-### Questões de pesquisa / de negócio
-
-Formule perguntas claras que o experimento deverá responder (Q1, Q2, etc.), em linguagem que faça sentido para os stakeholders técnicos e de negócio.
-
-### Métricas associadas (GQM)
-
-Associe a cada questão as métricas que serão usadas para respondê-la, com nome, definição, unidade e fonte dos dados, garantindo alinhamento entre G, Q e M.
-
-[Retorne ao Sumário](#sumário)
-
-## Escopo e contexto do experimento
-
-### Escopo funcional / de processo (incluído e excluído)
-
-Explique claramente o que será coberto (atividades, artefatos, equipes, módulos) e o que ficará fora do experimento, para evitar interpretações divergentes.
-
-### Contexto do estudo (tipo de organização, projeto, experiência)
-
-Caracterize o contexto em que o estudo ocorrerá: tipo e tamanho de organização, tipo de projeto, criticidade e perfil de experiência dos participantes.
-
-### Premissas
-
-Liste as suposições consideradas verdadeiras para o plano funcionar (por exemplo, disponibilidade de ambiente, estabilidade do sistema), mesmo que não possam ser garantidas.
-
-### Restrições
-
-Registre limitações práticas como tempo, orçamento, ferramentas, acessos ou regras organizacionais que impõem limites ao desenho.
-
-### Limitações previstas
-
-Explique fatores que podem prejudicar a generalização dos resultados (validez externa), como contexto muito específico ou amostra pouco representativa.
-
-[Retorne ao Sumário](#sumário)
-
-## Stakeholders e impacto esperado
-
-### Stakeholders principais
-
-Liste os grupos ou papéis que têm interesse ou serão impactados pelo experimento (por exemplo, devs, QA, produto, gestores, clientes internos).
-
-### Interesses e expectativas dos stakeholders
-
-Descreva o que cada grupo espera obter do experimento (insights, evidências, validação de decisão, mitigação de risco, etc.).
-
-### Impactos potenciais no processo / produto
-
-Antecipe como a execução do experimento pode afetar prazos, qualidade, carga de trabalho ou o próprio produto durante e após o estudo.
-
-[Retorne ao Sumário](#sumário)
-
-## Riscos de alto nível, premissas e critérios de sucesso
-
-### Riscos de alto nível (negócio, técnicos, etc.)
-
-Identifique os principais riscos para negócio e tecnologia (atrasos, falhas de ambiente, indisponibilidade de dados, etc.) em nível macro.
-
-### Critérios de sucesso globais (go / no-go)
-
-Defina as condições sob as quais o experimento será considerado útil e viável, inclusive critérios que sustentem uma decisão de seguir ou não com mudanças.
-
-### Critérios de parada antecipada (pré-execução)
-
-Descreva situações em que o experimento deve ser adiado ou cancelado antes de começar (falta de recursos críticos, reprovação ética, mudanças de contexto).
-
----
-
-7. Modelo conceitual e hipóteses
-7.1 Modelo conceitual do experimento
-Explique, em texto ou esquema, como você acredita que os fatores influenciam as respostas (por exemplo, “técnica A reduz defeitos em relação a B”).
-
-7.2 Hipóteses formais (H0, H1)
-Formule explicitamente as hipóteses nulas e alternativas para cada questão principal, incluindo a direção esperada do efeito quando fizer sentido.
-
-7.3 Nível de significância e considerações de poder
-Defina o nível de significância (por exemplo, α = 0,05) e comente o que se espera em termos de poder estatístico, relacionando-o ao tamanho de amostra planejado.
-
-8. Variáveis, fatores, tratamentos e objetos de estudo
-8.1 Objetos de estudo
-Descreva o que será efetivamente manipulado ou analisado (módulos de código, requisitos, tarefas, casos de teste, issues, etc.).
-
-8.2 Sujeitos / participantes (visão geral)
-Caracterize em alto nível quem serão os participantes (desenvolvedores, testadores, estudantes, etc.), sem ainda entrar em detalhes de seleção.
-
-8.3 Variáveis independentes (fatores) e seus níveis
-Liste os fatores que serão manipulados (por exemplo, técnica, ferramenta, processo) e indique os níveis de cada um (A/B, X/Y, alto/baixo).
-
-8.4 Tratamentos (condições experimentais)
-Descreva claramente cada condição de experimento (grupo controle, tratamento 1, tratamento 2, etc.) e o que distingue uma da outra.
-
-8.5 Variáveis dependentes (respostas)
-Informe as medidas de resultado que você observará (por exemplo, número de defeitos, esforço em horas, tempo de conclusão, satisfação).
-
-8.6 Variáveis de controle / bloqueio
-Liste fatores que você não está estudando diretamente, mas que serão mantidos constantes ou usados para formar blocos (por exemplo, experiência, tipo de tarefa).
-
-8.7 Possíveis variáveis de confusão conhecidas
-Identifique fatores que podem distorcer os resultados (como diferenças de contexto, motivação ou carga de trabalho) e que você pretende monitorar.
-
-9. Desenho experimental
-9.1 Tipo de desenho (completamente randomizado, blocos, fatorial, etc.)
-Indique qual tipo de desenho será utilizado e justifique brevemente por que ele é adequado ao problema e às restrições.
-
-9.2 Randomização e alocação
-Explique o que será randomizado (sujeitos, tarefas, ordem de tratamentos) e como a randomização será feita na prática (ferramentas, procedimentos).
-
-9.3 Balanceamento e contrabalanço
-Descreva como você garantirá que os grupos fiquem comparáveis (balanceamento) e como lidará com efeitos de ordem ou aprendizagem (contrabalanço).
-
-9.4 Número de grupos e sessões
-Informe quantos grupos existirão e quantas sessões ou rodadas cada sujeito ou grupo irá executar, com uma breve justificativa.
-
-10. População, sujeitos e amostragem
-10.1 População-alvo
-Descreva qual é a população real que você deseja representar com o experimento (por exemplo, “desenvolvedores Java de times de produto web”).
-
-10.2 Critérios de inclusão de sujeitos
-Especifique os requisitos mínimos para um participante ser elegível (experiência, conhecimento, papel, disponibilidade, etc.).
-
-10.3 Critérios de exclusão de sujeitos
-Liste condições que impedem participação (conflitos de interesse, falta de skills essenciais, restrições legais ou éticas).
-
-10.4 Tamanho da amostra planejado (por grupo)
-Defina quantos participantes você pretende ter no total e em cada grupo, relacionando a decisão com poder, recursos e contexto.
-
-10.5 Método de seleção / recrutamento
-Explique como os participantes serão escolhidos (amostra de conveniência, sorteio, convite aberto, turma de disciplina, time específico).
-
-10.6 Treinamento e preparação dos sujeitos
-Descreva qual treinamento ou material preparatório será fornecido para nivelar entendimento e reduzir vieses por falta de conhecimento.
-
-11. Instrumentação e protocolo operacional
-11.1 Instrumentos de coleta (questionários, logs, planilhas, etc.)
-Liste todos os instrumentos que serão usados para coletar dados (arquivos, formulários, scripts, ferramentas), com uma breve descrição do papel de cada um.
-
-11.2 Materiais de suporte (instruções, guias)
-Descreva as instruções escritas, guias rápidos, slides ou outros materiais que serão fornecidos a participantes e administradores do experimento.
-
-11.3 Procedimento experimental (protocolo – visão passo a passo)
-Escreva, em ordem, o que acontecerá na operação (do convite ao encerramento), de modo que alguém consiga executar o experimento seguindo esse roteiro.
-
-11.4 Plano de piloto (se haverá piloto, escopo e critérios de ajuste)
-Indique se um piloto será realizado, com que participantes e objetivos, e defina que tipo de ajuste do protocolo poderá ser feito com base nesse piloto.
-
-12. Plano de análise de dados (pré-execução)
-12.1 Estratégia geral de análise (como responderá às questões)
-Explique, em alto nível, como os dados coletados serão usados para responder cada questão de pesquisa ou de negócio.
-
-12.2 Métodos estatísticos planejados
-Liste os principais testes ou técnicas estatísticas que pretende usar (por exemplo, t-teste, ANOVA, testes não paramétricos, regressão).
-
-12.3 Tratamento de dados faltantes e outliers
-Defina previamente as regras para lidar com dados ausentes e valores extremos, evitando decisões oportunistas após ver os resultados.
-
-12.4 Plano de análise para dados qualitativos (se houver)
-Descreva como você tratará dados qualitativos (entrevistas, comentários, observações), especificando a técnica de análise (codificação, categorias, etc.).
-
-13. Avaliação de validade (ameaças e mitigação)
-13.1 Validade de conclusão
-Liste ameaças que podem comprometer a robustez das conclusões estatísticas (baixo poder, violação de suposições, erros de medida) e como pretende mitigá-las.
-
-13.2 Validade interna
-Identifique ameaças relacionadas a causas alternativas para os efeitos observados (history, maturation, selection, etc.) e explique suas estratégias de controle.
-
-13.3 Validade de constructo
-Refleta se as medidas escolhidas realmente representam os conceitos de interesse e descreva como você reduzirá ambiguidades de interpretação.
-
-13.4 Validade externa
-Discuta em que contextos os resultados podem ser generalizados e quais diferenças de cenário podem limitar essa generalização.
-
-13.5 Resumo das principais ameaças e estratégias de mitigação
-Faça uma síntese das ameaças mais críticas e das ações planejadas, de preferência em forma de lista ou tabela simples.
-
-14. Ética, privacidade e conformidade
-14.1 Questões éticas (uso de sujeitos, incentivos, etc.)
-Descreva potenciais questões éticas (pressão para participar, uso de estudantes, incentivos, riscos de exposição) e como serão tratadas.
-
-14.2 Consentimento informado
-Explique como os participantes serão informados sobre objetivos, riscos, benefícios e como registrarão seu consentimento.
-
-14.3 Privacidade e proteção de dados
-Indique que dados pessoais serão coletados, como serão protegidos (anonimização, pseudoanonimização, controle de acesso) e por quanto tempo serão mantidos.
-
-14.4 Aprovações necessárias (comitê de ética, jurídico, DPO, etc.)
-Liste órgãos ou pessoas que precisam aprovar o experimento (comitê de ética, jurídico, DPO, gestores) e o status atual dessas aprovações.
-
-15. Recursos, infraestrutura e orçamento
-15.1 Recursos humanos e papéis
-Identifique os membros da equipe do experimento e descreva brevemente o papel e responsabilidade de cada um.
-
-15.2 Infraestrutura técnica necessária
-Liste ambientes, servidores, ferramentas, repositórios e integrações que devem estar disponíveis para executar o experimento.
-
-15.3 Materiais e insumos
-Relacione materiais físicos ou digitais necessários (máquinas, licenças, formulários, dispositivos) que precisam estar prontos antes da operação.
-
-15.4 Orçamento e custos estimados
-Faça uma estimativa dos principais custos envolvidos (horas de pessoas, serviços, licenças, infraestrutura) e a fonte de financiamento.
-
-16. Cronograma, marcos e riscos operacionais
-16.1 Macrocronograma (até o início da execução)
-Defina as principais datas e marcos (conclusão do plano, piloto, revisão, início da operação) com uma visão de tempo realista.
-
-16.2 Dependências entre atividades
-Indique quais atividades dependem de outras para começar (por exemplo, treinamento após aprovação ética), deixando essas dependências claras.
-
-16.3 Riscos operacionais e plano de contingência
-Liste riscos ligados a cronograma, disponibilidade de pessoas ou recursos, e descreva ações de contingência caso esses riscos se materializem.
-
-17. Governança do experimento
-17.1 Papéis e responsabilidades formais
-Defina quem decide, quem executa, quem revisa e quem apenas deve ser informado, deixando claro o fluxo de responsabilidade.
-
-17.2 Ritos de acompanhamento pré-execução
-Descreva as reuniões, checkpoints e revisões previstos antes da execução, incluindo frequência e participantes.
-
-17.3 Processo de controle de mudanças no plano
-Explique como mudanças no desenho ou no escopo do experimento serão propostas, analisadas, aprovadas e registradas.
-
-18. Plano de documentação e reprodutibilidade
-18.1 Repositórios e convenções de nomeação
-Indique onde o plano, instrumentos, scripts e dados (futuros) serão armazenados e quais convenções de nomes serão usadas.
-
-18.2 Templates e artefatos padrão
-Liste os modelos (questionários, formulários, checklists, scripts) que serão usados e onde podem ser encontrados.
-
-18.3 Plano de empacotamento para replicação futura
-Descreva o que será organizado desde já (documentos, scripts, instruções) para facilitar a replicação do experimento por outras equipes ou no futuro.
-
-19. Plano de comunicação
-19.1 Públicos e mensagens-chave pré-execução
-Liste os grupos que precisam ser comunicados e quais mensagens principais devem receber (objetivos, escopo, datas, impactos esperados).
-
-19.2 Canais e frequência de comunicação
-Defina por quais canais (e-mail, reuniões, Slack/Teams, etc.) e com que frequência as comunicações serão feitas.
-
-19.3 Pontos de comunicação obrigatórios
-Especifique os eventos que exigem comunicação formal (aprovação do plano, mudanças relevantes, adiamentos, cancelamentos).
-
-20. Critérios de prontidão para execução (Definition of Ready)
-20.1 Checklist de prontidão (itens que devem estar completos)
-Liste os itens que precisam estar finalizados e aprovados (plano, instrumentos, aprovação ética, recursos, comunicação) para autorizar o início da operação.
-
-20.2 Aprovações finais para iniciar a operação
 
 ---
 
@@ -337,3 +51,24 @@ Liste os itens que precisam estar finalizados e aprovados (plano, instrumentos, 
 - [Open Source, Open Threats? Investigating Security Challenges in Open-Source Software](https://arxiv.org/abs/2506.12995)
 - [On the Discoverability of npm Vulnerabilities in Node.js Projects](https://das.encs.concordia.ca/publications)
     - Journals - 2022
+- [Open Source Security and Risk Analysis Report 2024](https://static.carahsoft.com/concrete/files/1617/1597/8665/2024_Open_Source_Security_and_Risk_Analysis_Report_WRAPPED.pdf)
+
+---
+
+# Informações Adicionais
+
+## Autor
+
+- [Jhonata Silveira Dias](https://github.com/jhonatasdias)
+    - Engenheiro de Software/Desenvolvedor
+
+## Responsável principal (PI / dono do experimento)
+
+- [Jhonata Silveira Dias](https://github.com/jhonatasdias)
+    - Engenheiro de Software/Desenvolvedor
+
+### Projeto / produto / iniciativa relacionada
+
+Descreva a qual produto, módulo, projeto ou iniciativa estratégica este experimento está conectado, facilitando o contexto.
+
+[Retorne ao Sumário](#sumário)
