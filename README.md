@@ -93,6 +93,8 @@ O4 – Integração e percepção no processo:
 
 Para responder a cada questão de pesquisa, foram definidas métricas mensuráveis, garantindo a rastreabilidade segundo o modelo GQM (Goal/Question/Metric). A Tabela 1 apresenta o mapeamento dos objetivos específicos, questões e métricas correspondentes, incluindo uma breve descrição de cada métrica e sua unidade de medida. 
 
+**Tabela 1 – Estrutura GQM com objetivos, questões e métricas.**
+
 | **Objetivo específico**                | **Questão de pesquisa**                                   | **Métrica**                                  | **Descrição da métrica**                                                                                                                                                                                                                                       | **Unidade**           |
 | -------------------------------------- | --------------------------------------------------------- | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | O1. Adoção de ferramentas nos projetos | Q1. Porcentagem de projetos que adotam alguma ferramenta? | **Taxa de adoção geral (%)**                 | Porcentagem de projetos no conjunto analisado que possuem pelo menos uma ferramenta de verificação de vulnerabilidades implementada em seu fluxo de desenvolvimento.                                                                                           | %                     |
@@ -120,7 +122,7 @@ Para responder a cada questão de pesquisa, foram definidas métricas mensuráve
 | O4                                     | Q12. Overhead ou ruído no processo?                       | **Overhead no tempo de build (%)**           | Aumento percentual no tempo de build/CI do projeto atribuível à execução da ferramenta de verificação de vulnerabilidades, comparando a duração dos builds com e sem a ferramenta habilitada.                                                                  | %                     |
 | O4                                     | Q12                                                       | **Taxa de falsos positivos (%)**             | Proporção dos alertas de vulnerabilidade gerados pela ferramenta que são falsos positivos, ou seja, não correspondem a vulnerabilidades reais no código. Essa taxa elevada pode causar ruído e retrabalho para a equipe de desenvolvimento.                    | %                     |
 
-**Tabela 1 – Estrutura GQM com objetivos, questões e métricas.**
+**Tabela 2 – Definição detalhada das métricas propostas.**
 
 | **Métrica**                                  | **Definição**                                                                                                                                                                                                                                                                                                                                                                      | **Unidade**             | **Fonte**                                                                                                |
 | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -149,8 +151,6 @@ Para responder a cada questão de pesquisa, foram definidas métricas mensuráve
 | **Overhead no tempo de build** (%)           | Aumento relativo na duração do processo de build/CI do projeto devido à execução da ferramenta de scan de vulnerabilidades. Calculado comparando a duração média dos builds com a ferramenta habilitada versus builds sem a ferramenta. Um valor de 20% significa que os builds ficam 20% mais lentos em média por conta do scan.                                                  | Percentual (%)          | Pipeline CI do projeto (dados de tempos de execução dos jobs de build)                                   |
 | **Taxa de falsos positivos** (%)             | Porcentagem dos alertas de vulnerabilidade emitidos pela ferramenta que são identificados como falsos positivos (ou seja, não representam de fato uma vulnerabilidade real no código). Uma taxa alta de falsos positivos (e.g., >5%) indica que a ferramenta gera muitos alarmes inválidos, o que pode desperdiçar esforço da equipe e causar *alert fatigue*.                     | Percentual (%)          | Relatórios da ferramenta e verificação manual de alertas (classificação dos alertas quanto à veracidade) |
 
-
-**Tabela 2 – Definição detalhada das métricas propostas.**
 
 [Retorne ao Sumário](#sumário)
 
