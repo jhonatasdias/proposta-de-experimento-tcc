@@ -402,9 +402,9 @@ Reconhecemos diversos fatores externos que podem interferir nos resultados, atua
 - Conhecimento/experência da equipe em segurança
 - Pressão externa e contexto do projeto
 
-Em suma, todas essas variáveis de confusão conhecidas serão monitoradas e, sempre que possível, integradas ao desenho (como controles ou blocos) ou à análise estatística (como covariáveis). Isso segue recomendações de estudos empíricos anteriores que destacam a importância de contabilizar características do repositório ao avaliar práticas de segurança. A Tabela 1 abaixo sintetiza todas as principais variáveis discutidas, indicando seu tipo, definição operacional e unidade de medida:
+Em suma, todas essas variáveis de confusão conhecidas serão monitoradas e, sempre que possível, integradas ao desenho (como controles ou blocos) ou à análise estatística (como covariáveis). Isso segue recomendações de estudos empíricos anteriores que destacam a importância de contabilizar características do repositório ao avaliar práticas de segurança. A Tabela 3 abaixo sintetiza todas as principais variáveis discutidas, indicando seu tipo, definição operacional e unidade de medida:
 
-**Tabela 1: Resumo das variáveis do estudo, com suas classificações, definições e unidades.**
+**Tabela 3: Resumo das variáveis do estudo, com suas classificações, definições e unidades.**
 
 | **Variável**                                            | **Tipo**                                       | **Definição operacional**                                                                                                                                                                                                                                         | **Unidade de medida**                          |
 | ------------------------------------------------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
