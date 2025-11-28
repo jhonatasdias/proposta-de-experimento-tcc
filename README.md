@@ -9,7 +9,9 @@
 1. [Escopo e contexto do experimento](#escopo-e-contexto-do-experimento)
 1. [Stakeholders e impacto esperado](#stakeholders-e-impacto-esperado)
 1. [Riscos de alto nível, premissas e critérios de sucesso](#riscos-de-alto-nível-premissas-e-critérios-de-sucesso)
-
+1. [Modelo conceitual e hipóteses](#modelo-conceitual-e-hipóteses)
+1. [Variáveis, fatores, tratamentos e objetos de estudo](#variáveis-fatores-tratamentos-e-objetos-de-estudo)
+1. [Desenho experimental](#desenho-experimental)
 
 > [Informações Adicionais](#informações-adicionais)
 
@@ -31,7 +33,7 @@ Este estudo foi conduzido em um contexto de pesquisa acadêmica, utilizando dado
 
 Os dados brutos (por exemplo, informações sobre dependências e vulnerabilidades reportadas) foram então processados e analisados com scripts em Python, permitindo extrair métricas e insights relevantes. Por fim, os resultados foram consolidados em visualizações gráficas para embasar a discussão. Esse arranjo técnico, envolvendo coleta automatizada, processamento de dados e apresentação visual, permitiu examinar sistematicamente as práticas de gerenciamento de vulnerabilidades em projetos JavaScript de forma reproduzível e escalável.
 
-### Trabalhos e evidências prévias (internos e externos)
+### Trabalhos e evidências prévias
 
 Estudos anteriores ressaltam a gravidade do problema das vulnerabilidades em open source e motivam a busca por soluções de verificação automatizada. O relatório Open Source Security and Risk Analysis 2024 (OSSRA) do Synopsys Cybersecurity Research Center (CyRC) revelou que 84% dos codebases analisados continham pelo menos uma vulnerabilidade conhecida de código aberto, e 74% dos codebases apresentavam vulnerabilidades classificadas como de alto risco. Esses números evidenciam não apenas a ubiquidade de vulnerabilidades em projetos de software, mas também a severidade considerável de muitas delas. Além da prevalência das falhas, o crescimento acelerado do volume de vulnerabilidades reportadas tem sido documentado na literatura.
 
@@ -48,7 +50,7 @@ investor e o crescimento acelerado das mesmas, este estudo busca analisar critic
 
 [Retorne ao Sumário](#sumário)
 
-## Objetivos e questões (Goal / Question / Metric)
+## Objetivos e questões
 
 ### Objetivo geral
 
@@ -284,6 +286,172 @@ Também estabelecemos critérios de parada antecipada – condições sob as qua
 - Desvio do escopo inicial;
 - Indicativos de nenhum resultado significativo;
 - Recursos esgotados ou obstáculo instransponível.
+
+[Retorne ao Sumário](#sumário)
+
+## Modelo conceitual e hipóteses
+
+### Modelo conceitual do experimento
+Explique, em texto ou esquema, como você acredita que os fatores influenciam as respostas (por exemplo, “técnica A reduz defeitos em relação a B”).
+
+### Hipóteses formais (H0, H1)
+Formule explicitamente as hipóteses nulas e alternativas para cada questão principal, incluindo a direção esperada do efeito quando fizer sentido.
+
+### Nível de significância e considerações de poder
+Defina o nível de significância (por exemplo, α = 0,05) e comente o que se espera em termos de poder estatístico, relacionando-o ao tamanho de amostra planejado.
+
+### Hipóteses formais (H₀, H₁)
+
+As hipóteses serão testadas em relação às principais variáveis de resposta. Para cada métrica, temos uma hipótese nula (H₀) e uma alternativa (H₁), com direção do efeito esperada.
+
+**Hipótese 1 – Número de vulnerabilidades conhecidas (M1)**
+
+H₀: A média de vulnerabilidades conhecidas ativas é igual entre projetos que adotam e os que não adotam ferramentas.
+
+H₁: Projetos que adotam ferramentas possuem menor média de vulnerabilidades conhecidas ativas.
+
+**Hipótese 2 – Tempo médio de correção de vulnerabilidades (MTTR) (M2)**
+
+H₀: O tempo médio de correção de vulnerabilidades não difere entre os dois grupos.
+
+H₁: Projetos com ferramentas corrigem vulnerabilidades mais rapidamente (menor MTTR).
+
+**Hipótese 3 – Proporção de dependências atualizadas (M3)**
+
+H₀: Não há diferença na proporção de dependências atualizadas entre os dois grupos.
+
+H₁: Projetos com ferramentas têm maior proporção de dependências atualizadas.
+
+**Hipótese 4 – Taxa de aceitação de correções automatizadas (M4)**
+
+H₀: A taxa média de aceitação de PRs automáticos é igual entre projetos com e sem ferramentas.
+
+H₁: Projetos com ferramentas apresentam maior taxa de aceitação de correções automatizadas.
+
+**Hipótese 5 – Tempo médio de atualização de dependências (MTTU) (M5)**
+
+H₀: O tempo médio de atualização de dependências não varia entre os grupos.
+
+H₁: Projetos com ferramentas atualizam dependências mais rapidamente (menor MTTU).
+
+As hipóteses serão testadas individualmente, com ajustes para múltiplas comparações conforme necessário (por exemplo, Bonferroni ou FDR), para evitar inflar a taxa de falso positivo global.
+
+### Nível de significância e considerações de poder
+
+Nível de significância (α): Será adotado o valor padrão de α = 0,05, ou seja, aceitaremos até 5% de probabilidade de erro do tipo I (rejeitar uma hipótese nula verdadeira).
+
+Poder estatístico esperado (1 - β): Esperamos obter um poder mínimo de 80%, o que implica uma probabilidade de 20% ou menos de cometer erro tipo II (falha em detectar um efeito que realmente existe). Esse nível é considerado adequado para estudos empíricos em Engenharia de Software.
+
+Tamanho da amostra: A meta é coletar dados de pelo menos 100 repositórios em cada grupo (controle e tratamento), o que permitiria detectar efeitos de tamanho médio (Cohen's d ≈ 0,5) com poder ≥ 80%, assumindo distribuição normal aproximada e testes paramétricos. Se a distribuição não for normal, serão utilizados testes não paramétricos (Mann-Whitney, etc.), com potencial perda de poder, mas ganhos em robustez.
+
+Análise prévia de poder: Caso seja necessário refinar o planejamento amostral, poderá ser realizada uma análise de poder a priori com base na variância estimada das métricas nos dados históricos ou em estudos similares.
+
+[Retorne ao Sumário](#sumário)
+
+## Variáveis, fatores, tratamentos e objetos de estudo
+
+### Objetos de estudo
+
+Os objetos de estudo consistem em projetos open source escritos em JavaScript, incluindo todo o ecossistema de artefatos associados. Isso abrange o código-fonte dos repositórios, seus arquivos de configuração de dependências (por exemplo, package.json e package-lock.json), quaisquer arquivos de configuração YAML relacionados a pipelines de integração contínua (especialmente aqueles configurando ferramentas de verificação de vulnerabilidades), bem como os registros de alertas de vulnerabilidades ou issues de segurança nos repositórios. Em resumo, analisamos os repositórios de código e seus metadados para observar evidências da adoção de ferramentas de verificação de vulnerabilidades (como, por exemplo, Dependabot, Snyk ou similares) e os efeitos dessa adoção nos projetos.
+
+### Sujeitos/participantes
+
+Não há participação direta de indivíduos via experimentação controlada; em vez disso, os “sujeitos” são os próprios projetos e, indiretamente, suas equipes de desenvolvimento (mantenedores e contribuidores da comunidade open source). Em termos práticos, cada projeto JavaScript selecionado serve como uma unidade experimental. Consideramos que as decisões tomadas pelos mantenedores (por exemplo, habilitar ou não uma ferramenta de varredura de vulnerabilidades) representam as intervenções naturais que queremos analisar. Assim, os participantes envolvidos de forma indireta são os mantenedores e contribuidores desses projetos, cujas ações e métricas (como commits de correção de falhas, tempo de resposta a alertas, etc.) serão observadas nos dados históricos. A seleção dos projetos para análise seguirá critérios de relevância (por exemplo, projetos ativos e populares o suficiente para fornecer dados significativos) e aleatoriedade na escolha dentro desses critérios, de forma a obter uma amostra representativa dos projetos JavaScript open source. Vale notar que um estudo recente analisando 500 repositórios JavaScript identificou que cerca de 46,4% dos projetos chegaram a usar a ferramenta Dependabot em algum momento. Esse dado ressalta que há uma divisão substancial na comunidade – quase metade dos projetos adota uma ferramenta automatizada de verificação de vulnerabilidades (no caso, focada em dependências), enquanto a outra metade não – justificando a definição de dois grupos distintos para comparação (adotantes vs. não adotantes).
+
+### Variáveis independentes (fatores) e seus níveis 
+
+O principal fator independente considerado é a adoção de ferramentas de verificação de vulnerabilidades pelo projeto. Esse fator é de natureza categórica binária, com dois níveis principais: projetos que adotam pelo menos uma ferramenta de verificação de vulnerabilidades, integrando-a em seu processo de desenvolvimento (por exemplo, habilitando scanners de dependências ou analisadores de código de segurança em sua pipeline CI); e projetos que não adotam tais ferramentas. Em outras palavras, o fator “adoção de ferramenta” possui níveis “Adota” vs. “Não Adota”. A classificação de um projeto em um nível ou outro será determinada pela presença de evidências de uso de ferramentas de varredura de vulnerabilidade – por exemplo, presença de arquivos de configuração do Dependabot ou GitHub Actions de scan, histórico de commits ou pull requests gerados por essas ferramentas, ou métricas derivadas (como o indicador Dependency-Update-Tool do OpenSSF Scorecard). Cabe ressaltar que, por se tratar de um estudo observacional, esse fator não é manipulado ativamente pelos pesquisadores, mas observado conforme ocorre naturalmente em cada projeto (fator de seleção). Caso pertinente, poderemos considerar subníveis adicionais de acordo com o tipo específico de ferramenta adotada (por exemplo: adoção de scanner de dependências vs. scanner de código estático), porém o delineamento principal trata a adoção de qualquer ferramenta de verificação de vulnerabilidades de forma agregada (sim/não) para fins de comparação primária.
+
+### Tratamentos
+
+As condições experimentais correspondem aos grupos de comparação definidos pelo fator acima. Teremos dois grupos principais de análise: Grupo de Controle, composto por projetos que não adotam nenhuma ferramenta de verificação de vulnerabilidades automatizada; e Grupo de Tratamento, composto por projetos que adotam ao menos uma dessas ferramentas em seu processo. Esses grupos representam, respectivamente, a condição “ausência da intervenção” vs. “presença da intervenção” (onde a intervenção de interesse é a introdução de ferramentas de verificação de vulnerabilidades no fluxo de desenvolvimento do projeto). Dessa forma, trata-se de um delineamento comparativo entre projetos sem e com adoção da ferramenta. Cada projeto dentro do grupo de tratamento pode ter adotado possivelmente diferentes ferramentas ou práticas, mas todos compartilham a característica de utilizar algum mecanismo automatizado de detecção de vulnerabilidades. Já os projetos do grupo de controle não possuem nenhuma integração desse tipo. Tratamentos combinados: Como há apenas um fator principal (adoção da ferramenta, binário), não há combinações multifatoriais de tratamentos neste estudo; há simplesmente as duas condições mutuamente exclusivas mencionadas. A tabela a seguir resume o fator e seus níveis (tratamentos):
+
+| **Fator (Variável Independente)**                       | **Níveis (Tratamentos)**                                                                 |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Adoção de ferramenta de verificação de vulnerabilidades | - Não adota ferramenta (Grupo de Controle) <br> - Adota ferramenta (Grupo de Tratamento) |
+
+### Variáveis dependentes 
+
+As variáveis dependentes representam as medidas de resultado que buscamos avaliar para quantificar os efeitos (se houver) da adoção das ferramentas de verificação de vulnerabilidades. Cada variável de resposta está ligada a aspectos de segurança do projeto, sob a hipótese de que projetos que utilizam scanners de vulnerabilidades apresentarão melhores indicadores. Abaixo definimos claramente cada métrica de resultado considerada:
+
+- Contage de vulnerabilidades conhecidas não resolvidas
+- Tempo médio de correção de vulnerabilidade (MTTR)
+- Tempo medio de atualização de dependências (MTTU)
+- Taxa de aceitação de correções automáticas
+- Proporção de dependências atualizadas
+
+Todas as variáveis dependentes acima são quantitativas. Elas fornecem medidas objetivas de segurança e manutenção do projeto. A escolha dessas medidas se baseia em literatura recente que correlaciona a adoção de práticas/ferramentas de segurança com melhorias mensuráveis nesses indicadores. Assim, se a ferramenta de verificação de vulnerabilidades estiver trazendo benefícios, esperamos observar (a) contagens menores de vulnerabilidades abertas, (b) tempos reduzidos de correção/atualização, e (c) altas taxas de aplicação de correções sugeridas, em comparação ao grupo de controle.
+
+Para garantir que as comparações entre os grupos sejam justas e que os resultados obtidos sejam de fato devido à adoção da ferramenta (e não a outros fatores), identificamos uma série de variáveis de controle. Estas são características dos projetos que serão mantidas constantes, equilibradas entre os grupos ou explicitamente incluídas nos modelos de análise para neutralizar sua influência. Também poderemos usar algumas delas como critérios de bloqueio, estratificando a análise por categorias. As principais variáveis de controle propostas são:
+
+- Tamanho do projeto
+- Idade do projeto (maturidade)
+- Núemro de contribuidores ativos
+- Popularidade do projeto
+- Dompínio/tipo do projeto
+- Complexidade das dependências
+
+Em adição às variáveis acima, que podemos medir diretamente, adotaremos estratégias de bloqueio quando possível. Por exemplo, poderemos dividir a amostra em blocos de acordo com a categoria de projeto (bibliotecas vs. aplicações) ou por quartis de popularidade, e então comparar a efetividade da adoção dentro de cada bloco. Isso assegura que a comparação “com vs. sem ferramenta” ocorra entre projetos de natureza semelhante, reduzindo viés. Também nos permite observar se o efeito da ferramenta é consistente em diferentes contextos (por exemplo, em projetos grandes vs. pequenos).
+
+### Possíveis variáveis de confusão conhecidas 
+
+Reconhecemos diversos fatores externos que podem interferir nos resultados, atuando como variáveis de confusão, isto é, correlacionando-se tanto com a adoção da ferramenta quanto com os resultados de segurança. Já mencionamos muitos deles como controles; aqui destacamos os principais e por que devem ser monitorados:
+
+- Tamanho e complexidade do projeto
+- Atividade e maturidade do projeto
+- Conhecimento/experência da equipe em segurança
+- Pressão externa e contexto do projeto
+
+Em suma, todas essas variáveis de confusão conhecidas serão monitoradas e, sempre que possível, integradas ao desenho (como controles ou blocos) ou à análise estatística (como covariáveis). Isso segue recomendações de estudos empíricos anteriores que destacam a importância de contabilizar características do repositório ao avaliar práticas de segurança. A Tabela 1 abaixo sintetiza todas as principais variáveis discutidas, indicando seu tipo, definição operacional e unidade de medida:
+
+**Tabela 1: Resumo das variáveis do estudo, com suas classificações, definições e unidades.**
+
+| **Variável**                                            | **Tipo**                                       | **Definição operacional**                                                                                                                                                                                                                                         | **Unidade de medida**                          |
+| ------------------------------------------------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| Adoção de ferramenta de verificação de vulnerabilidades | Independente (Fator) – Categórica binária      | Indica se o projeto utiliza ao menos uma ferramenta automatizada de varredura de vulnerabilidades (e.g., Dependabot, Snyk). Determinado pela presença de configurações ou histórico de uso da ferramenta no repositório.                                          | Binário (Sim/Não)                              |
+| Contagem de vulnerabilidades não resolvidas             | Dependente – Quantitativa discreta             | Número de vulnerabilidades de segurança conhecidas ainda presentes no projeto (alertas abertos não corrigidos). Obtido via alertas de segurança do GitHub ou relatórios de vulnerabilidades nas dependências.                                                     | Contagem (número absoluto de vulnerabilidades) |
+| Tempo médio de correção de vulnerabilidades (MTTR)      | Dependente – Quantitativa contínua             | Média de tempo decorrido entre a identificação de uma vulnerabilidade e sua correção no projeto. Calculado a partir de timestamps de alertas abertos e fechados (ou commits de fix).                                                                              | Tempo (dias)                                   |
+| Tempo médio de atualização de dependências (MTTU)       | Dependente – Quantitativa contínua             | Média de tempo para o projeto atualizar suas dependências após lançamento de novas versões, especialmente aquelas que corrigem falhas. Baseado na diferença de data entre a disponibilização de uma versão corrigida e o update correspondente no `package.json`. | Tempo (dias)                                   |
+| Taxa de aceitação de correções automáticas              | Dependente – Quantitativa contínua (proporção) | Porcentagem de sugestões de correção (PRs automáticos de ferramentas) que foram mescladas com sucesso no código do projeto. Calculado como (nº de PRs de correção aceitos / nº total de PRs de correção propostos * 100).                                         | Porcentagem (%)                                |
+| Proporção de dependências atualizadas                   | Dependente – Quantitativa contínua (proporção) | Fração das dependências do projeto que estão atualizadas (na última versão ou sem vulnerabilidades conhecidas). Pode ser derivada do número de dependências sem alertas dividido pelo total de dependências.                                                      | Proporção (0 a 1) or %                         |
+| Tamanho do projeto (LOC)                                | Controle – Quantitativa contínua               | Tamanho do código fonte do projeto medido em linhas de código (LOC) ou número de arquivos. Obtido via ferramentas de contagem de linhas no repositório.                                                                                                           | Contagem (nº de linhas ou arquivos)            |
+| Idade do projeto                                        | Controle – Quantitativa contínua               | Tempo de existência do projeto desde o primeiro commit até o fim do período de estudo.                                                                                                                                                                            | Tempo (anos)                                   |
+| Nº de contribuidores ativos                             | Controle – Quantitativa discreta               | Total de desenvolvedores que contribuíram com commits no projeto no último período relevante (por exemplo, último ano).                                                                                                                                           | Contagem (nº de pessoas)                       |
+| Popularidade (estrelas no GitHub)                       | Controle – Quantitativa discreta               | Popularidade do projeto medida pelo número de estrelas no GitHub (proxy de uso/comunidade).                                                                                                                                                                       | Contagem (nº de estrelas)                      |
+| Tipo de projeto                                         | Controle (ou Bloco) – Categórica nominal       | Categoria do software: por exemplo, **biblioteca** (reutilizável por outros projetos) vs **aplicação** (produto final), ou outras classificações de domínio. Definido via inspeção manual ou metadados do projeto.                                                | Rótulo categórico (ex.: biblioteca/app)        |
+| Nº de dependências diretas                              | Controle – Quantitativa discreta               | Quantidade de pacotes/bibliotecas listados como dependências diretas no `package.json` do projeto. (Opcionalmente podemos considerar também dependências transitivas agregadas).                                                                                  | Contagem (nº de dependências)                  |
+| Atividade recente (commits/mês)                         | Controle – Quantitativa contínua               | Taxa de atividade de desenvolvimento medida pelo número médio de commits por mês no último ano. Indica quão ativo está o projeto atualmente.                                                                                                                      | Frequência (commits por mês)                   |
+| (Outros potenciais confounders qualitativos)            | Confusão (não mensurável diretamente)          | Ex.: Cultura de segurança da equipe, apoio corporativo, criticidade do projeto, etc., que não possuem métrica direta mas podem influenciar. Serão considerados qualitativamente na interpretação dos resultados.                                                  | *N/A*                                          |
+
+
+[Retorne ao Sumário](#sumário)
+
+## Desenho experimental
+
+### Tipo de desenho 
+
+O estudo adotará um desenho quase-experimental de caráter observacional comparativo, frequentemente chamado de estudo ex post facto. Trata-se de um desenho comparativo porque avalia diferenças entre dois grupos (projetos que adotam vs. não adotam a ferramenta), porém não-randomizado devido à natureza do problema – não é possível atribuir aleatoriamente a adoção de ferramenta a projetos open source independentes. Em vez disso, observamos um fenômeno já ocorrido (adoção voluntária da ferramenta) e comparamos com um controle. Assim, o delineamento se assemelha a um estudo de coorte retrospectivo: identificamos uma coorte de projetos “expostos” à intervenção (ferramenta de verificação) e comparamos com uma coorte não exposta, acompanhando determinados resultados de segurança. Esse desenho é comparativo observacional pois avalia diferenças entre grupos definidos por um fator de interesse, mas sem interferência do pesquisador na atribuição do fator. Também podemos classificá-lo como um desenho entre sujeitos (between-subjects), já que diferentes projetos pertencem a condições distintas. Optamos por esse tipo de delineamento porque ele reflete as condições do mundo real da adoção de ferramentas em projetos open source, ao mesmo tempo em que nos permite inferir associações entre adoção e resultados. Embora seja observacional, tomaremos cuidados (descritos adiante) para aproximar as condições de um experimento controlado no que tange à comparabilidade dos grupos.
+
+Adicionalmente, incorporaremos elementos de desenho em blocos no processo de análise, ao estratificar os projetos por características (como tipo ou tamanho do projeto) antes da comparação. Isso adiciona um aspecto de controle experimental dentro do delineamento observacional, aumentando a precisão ao eliminar variações indevidas dentro de cada bloco. Em suma, o desenho é principalmente comparativo observacional com controle estatístico de variáveis de confusão, aproximando-se de um quasi-experimento. Não se trata de um experimento fatorial completo (pois temos essencialmente um fator principal), mas cobrimos diferentes cenários através de blocos.
+
+### Randomização e alocação 
+
+Devido à natureza retrospectiva do estudo, não há como randomizar quais projetos adotam ou não a ferramenta – essa decisão já foi tomada autonomamente pelas comunidades dos projetos. No entanto, introduziremos randomização em dois aspectos para reduzir vieses:
+
+- Seleção Aleatória da Amostra
+- Alocação/Emparelhaamento
+
+Em termos de alocação às condições, poderíamos dizer que os projetos “auto-selecionaram” a condição (adoção vs. não adoção). Nosso papel no desenho é, portanto, realocar analiticamente os projetos em grupos comparáveis. Em resumo, não há distribuição aleatória clássica de sujeitos às condições, mas compensamos isso pela aleatoriedade na seleção da amostra e por ajustes posteriores via emparelhamento/matching.
+
+### Balanceamento e contrabalanço: 
+
+Garantir o balanceamento entre os grupos é crucial para validade interna neste desenho observacional. Empregaremos várias estratégias para assegurar que os grupos Adotantes e Não Adotantes sejam comparáveis:
+
+- Balanceamento de variáveis de controle
+- Contrabalanço de efeitos de ordem
+- Estratificação
+
+Em síntese, o design assegura balanceamento via seleção cuidadosa e técnicas analíticas. Como é impossível contrabalançar ordem de tratamento (pois não há aplicação sequencial de tratamento), focamos em balancear as características intrínsecas dos sujeitos entre as condições. Tais precauções seguem boas práticas de estudos quase-experimentais em Engenharia de Software, aumentando a confiabilidade de que diferenças observadas nos resultados devem-se à variável independente (adoção da ferramenta) e não a vieses de seleção.
 
 [Retorne ao Sumário](#sumário)
 
