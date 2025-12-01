@@ -5,7 +5,7 @@
 > [Título](#a-adoção-real-de-sistemas-de-verificação-de-vunerabilidade-em-projetos-javascript---pj001)
 
 1. [Contexto e problema](#contexto-e-problema)
-1. [Objetivos e questões (Goal / Question / Metric)](#objetivos-e-questões-goal--question--metric)
+1. [Objetivos e questões](#objetivos-e-questões)
 1. [Escopo e contexto do experimento](#escopo-e-contexto-do-experimento)
 1. [Stakeholders e impacto esperado](#stakeholders-e-impacto-esperado)
 1. [Riscos de alto nível, premissas e critérios de sucesso](#riscos-de-alto-nível-premissas-e-critérios-de-sucesso)
