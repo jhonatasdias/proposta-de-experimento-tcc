@@ -12,6 +12,8 @@
 1. [Modelo conceitual e hipóteses](#modelo-conceitual-e-hipóteses)
 1. [Variáveis, fatores, tratamentos e objetos de estudo](#variáveis-fatores-tratamentos-e-objetos-de-estudo)
 1. [Desenho experimental](#desenho-experimental)
+1. [População, sujeitos e amostragem](#população-sujeitos-e-amostragem)
+1. [Plano de análise de dados](#plano-de-análise-de-dados)
 
 > [Informações Adicionais](#informações-adicionais)
 
@@ -452,6 +454,64 @@ Garantir o balanceamento entre os grupos é crucial para validade interna neste 
 - Estratificação
 
 Em síntese, o design assegura balanceamento via seleção cuidadosa e técnicas analíticas. Como é impossível contrabalançar ordem de tratamento (pois não há aplicação sequencial de tratamento), focamos em balancear as características intrínsecas dos sujeitos entre as condições. Tais precauções seguem boas práticas de estudos quase-experimentais em Engenharia de Software, aumentando a confiabilidade de que diferenças observadas nos resultados devem-se à variável independente (adoção da ferramenta) e não a vieses de seleção.
+
+[Retorne ao Sumário](#sumário)
+
+## População, sujeitos e amostragem
+
+### População-alvo
+
+A população-alvo deste estudo são projetos open source JavaScript hospedados no GitHub que possuem atividade recente e base de contribuidores ativos, representando a prática real de manutenção de software nesse ecossistema.
+
+### Critérios de inclusão de sujeitos
+
+- Projetos escritos majoritariamente em JavaScript ou Node.js
+- Repositórios públicos, com pelo menos 50 estrelas e 5 contribuidores
+- Ter histórico de commits nos últimos 12 meses
+- Usar gerenciadores de pacotes como npm ou yarn
+
+### Critérios de exclusão de sujeitos
+
+- Repositórios arquivados, descontinuados ou com menos de 10 commits no total
+- Projetos pessoais, forks sem atividade, ou espelhos automatizados
+- Repositórios sem package.json (indicador da estrutura de dependências)
+
+### Tamanho da amostra planejado
+
+Pretende-se analisar no mínimo 100 repositórios com ferramentas de verificação e 100 sem ferramentas, totalizando 200 projetos. Esse tamanho é suficiente para detectar efeitos moderados com poder estatístico ≥ 80% e nível de significância α = 0,05.
+
+### Método de seleção / recrutamento
+
+A seleção será feita por amostragem por conveniência com critérios sistemáticos, utilizando consultas à API do GitHub e filtragem automática com base nas condições de inclusão e exclusão. Repositórios serão selecionados aleatoriamente entre os que atendem aos critérios.
+
+### Treinamento e preparação dos sujeitos
+
+Como o experimento é observacional sobre repositórios, não haverá intervenção com participantes humanos diretos. No entanto, os dados e critérios de análise serão padronizados e documentados em um manual para garantir reprodutibilidade e consistência na coleta e interpretação dos dados.
+
+[Retorne ao Sumário](#sumário)
+
+## Plano de análise de dados
+
+### Estratégia geral de análise
+
+Cada questão de pesquisa será respondida comparando métricas-chave (como número de vulnerabilidades, MTTR, proporção de dependências atualizadas) entre os grupos de projetos com e sem ferramentas de verificação, controlando para variáveis como idade e popularidade do repositório.
+
+### Métodos estatísticos planejados
+
+- Testes de média (t-test, Mann-Whitney U) para comparação entre grupos
+- Regressão linear múltipla e logística, para controle de variáveis de confusão
+- Correlação de Spearman entre nível de adoção e intensidade das práticas de segurança
+- Análise de cluster ou segmentação, se surgirem perfis distintos de projetos
+
+### Tratamento de dados faltantes e outliers
+
+- Repositórios com dados incompletos nas métricas principais serão excluídos da análise
+- Outliers serão identificados por IQR (interquartil range) ou z-score (>3 desvios padrão), mas não removidos automaticamente — serão analisados separadamente e tratados com cautela
+- Se a quantidade de dados faltantes for baixa (<5%), poderá ser feita imputação média ou mediana para manter a amostra
+
+### Plano de análise para dados qualitativos (se houver)
+
+Caso sejam incluídos dados qualitativos (ex.: descrição de issues ou PRs automatizados), será utilizada análise de conteúdo por codificação aberta, identificando padrões de motivação, aceitação ou rejeição de práticas automatizadas de segurança.
 
 [Retorne ao Sumário](#sumário)
 
