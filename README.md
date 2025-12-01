@@ -509,7 +509,7 @@ Cada questão de pesquisa será respondida comparando métricas-chave (como núm
 - Outliers serão identificados por IQR (interquartil range) ou z-score (>3 desvios padrão), mas não removidos automaticamente — serão analisados separadamente e tratados com cautela
 - Se a quantidade de dados faltantes for baixa (<5%), poderá ser feita imputação média ou mediana para manter a amostra
 
-### Plano de análise para dados qualitativos (se houver)
+### Plano de análise para dados qualitativos
 
 Caso sejam incluídos dados qualitativos (ex.: descrição de issues ou PRs automatizados), será utilizada análise de conteúdo por codificação aberta, identificando padrões de motivação, aceitação ou rejeição de práticas automatizadas de segurança.
 
