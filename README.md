@@ -14,6 +14,7 @@
 1. [Desenho experimental](#desenho-experimental)
 1. [População, sujeitos e amostragem](#população-sujeitos-e-amostragem)
 1. [Plano de análise de dados](#plano-de-análise-de-dados)
+1. [Avaliação de validade](#avaliação-de-validade)
 
 > [Informações Adicionais](#informações-adicionais)
 
@@ -512,6 +513,35 @@ Cada questão de pesquisa será respondida comparando métricas-chave (como núm
 ### Plano de análise para dados qualitativos
 
 Caso sejam incluídos dados qualitativos (ex.: descrição de issues ou PRs automatizados), será utilizada análise de conteúdo por codificação aberta, identificando padrões de motivação, aceitação ou rejeição de práticas automatizadas de segurança.
+
+[Retorne ao Sumário](#sumário)
+
+## Avaliação de validade
+
+### Validade de conclusão
+
+A robustez estatística pode ser comprometida por baixo poder amostral, violações de normalidade e presença de outliers. Para mitigar, serão aplicados testes de normalidade, adotados testes não paramétricos quando necessário, e realizados cálculos de poder para garantir sensibilidade adequada.
+
+### Validade interna
+
+Como o estudo é observacional, há risco de viés de seleção e influência de variáveis não controladas (ex: maturidade do projeto). A mitigação será feita por controle estatístico (regressão), padronização de critérios de inclusão/exclusão e análise comparativa entre perfis similares.
+
+### Validade de constructo
+
+Há o risco de que algumas métricas não representem adequadamente os conceitos visados (ex: usar dependências desatualizadas como proxy para negligência de segurança). Para reduzir esse risco, as métricas foram baseadas em literatura consolidada e práticas reconhecidas por entidades como OWASP e OpenSSF.
+
+### Validade externa
+
+Os resultados são generalizáveis para projetos JavaScript open source hospedados no GitHub com características similares (ex: atividade recente, número de contribuidores). Projetos privados ou de outras linguagens podem não refletir os mesmos padrões.
+
+### Síntese das principais ameaças e estratégias de mitigação
+
+| Tipo de Validade | Ameaça Principal                                        | Estratégia de Mitigação                             |
+| ---------------- | ------------------------------------------------------- | --------------------------------------------------- |
+| Conclusão        | Baixo poder, suposições não atendidas                   | Amostra ≥ 100 por grupo; testes robustos            |
+| Interna          | Fatores de confusão, viés de seleção                    | Controle estatístico; critérios rigorosos de filtro |
+| Constructo       | Ambiguidade na definição de métricas                    | Adoção de métricas validadas na literatura          |
+| Externa          | Limitações na representatividade dos projetos estudados | Definição clara da população e escopo               |
 
 [Retorne ao Sumário](#sumário)
 
