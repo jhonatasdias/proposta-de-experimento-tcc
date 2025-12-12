@@ -72,6 +72,7 @@ Analisar a adoção de ferramentas de verificação de vulnerabilidades em proje
 ### Questões de pesquisa
 
 Para cada objetivo específico foram definidas questões de pesquisa que orientam a medição. As questões são organizadas por objetivo:
+
 O1 – Adoção de ferramentas nos projetos:
 
 - Q1: Qual a porcentagem de projetos open source em JavaScript que adotam pelo menos uma ferramenta de verificação de vulnerabilidades?
@@ -79,6 +80,7 @@ O1 – Adoção de ferramentas nos projetos:
 - Q2: Quais tipos de ferramentas de verificação de vulnerabilidades são mais frequentemente adotados (por exemplo, ferramentas de análise estática de código vs. análise de dependências)?
 
 - Q3: Como a adoção dessas ferramentas tem evoluído ao longo do tempo nos projetos (ex.: crescimento anual de adoção)?
+
 O2 – Impacto na segurança do projeto:
 
 - Q4: Projetos que adotam ferramentas de verificação de vulnerabilidades apresentam menos vulnerabilidades não corrigidas em comparação a projetos que não as adotam?
@@ -86,6 +88,7 @@ O2 – Impacto na segurança do projeto:
 - Q5: O uso dessas ferramentas está associado a um tempo mais rápido de correção de vulnerabilidades identificadas (menor Mean Time to Remediate - MTTR)?
 
 - Q6: A adoção das ferramentas correlaciona-se com melhores indicadores globais de segurança no projeto (por exemplo, maior pontuação de segurança ou maior taxa de vulnerabilidades resolvidas)?
+
 O3 – Fatores influentes na adoção:
 
 - Q7: Projetos de maior porte (e.g., mais colaboradores ou código) apresentam taxas de adoção de ferramentas de vulnerabilidades superiores às de projetos menores?
@@ -93,6 +96,7 @@ O3 – Fatores influentes na adoção:
 - Q8: Projetos mais populares (por exemplo, com mais estrelas no repositório ou muito utilizados como dependência) tendem a adotar essas ferramentas com maior frequência?
 
 - Q9: Características de desenvolvimento, como alta atividade (frequência de commits) ou maior maturidade (idade do projeto), influenciam a probabilidade de adoção das ferramentas?
+
 O4 – Integração e percepção no processo:
 
 - Q10: De que forma as ferramentas de verificação de vulnerabilidades estão integradas ao processo de desenvolvimento (por exemplo, integradas em pipelines CI/CD automáticos)?
