@@ -488,6 +488,10 @@ Como o experimento é observacional sobre repositórios, não haverá intervenç
 
 ## Plano de análise de dados
 
+### Metodologia
+
+![alt text](./images/fluxo-metodologico.png)
+
 ### Estratégia geral de análise
 
 Cada questão de pesquisa será respondida comparando métricas-chave (como número de vulnerabilidades, MTTR, proporção de dependências atualizadas) entre os grupos de projetos com e sem ferramentas de verificação, controlando para variáveis como idade e popularidade do repositório.
