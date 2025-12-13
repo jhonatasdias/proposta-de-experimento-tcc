@@ -298,15 +298,6 @@ Também estabelecemos critérios de parada antecipada – condições sob as qua
 
 ## Modelo conceitual e hipóteses
 
-### Modelo conceitual do experimento
-Explique, em texto ou esquema, como você acredita que os fatores influenciam as respostas (por exemplo, “técnica A reduz defeitos em relação a B”).
-
-### Hipóteses formais (H0, H1)
-Formule explicitamente as hipóteses nulas e alternativas para cada questão principal, incluindo a direção esperada do efeito quando fizer sentido.
-
-### Nível de significância e considerações de poder
-Defina o nível de significância (por exemplo, α = 0,05) e comente o que se espera em termos de poder estatístico, relacionando-o ao tamanho de amostra planejado.
-
 ### Hipóteses formais (H₀, H₁)
 
 As hipóteses serão testadas em relação às principais variáveis de resposta. Para cada métrica, temos uma hipótese nula (H₀) e uma alternativa (H₁), com direção do efeito esperada.
